@@ -1,0 +1,5 @@
+def time_check(df):
+    df['start_datetime'] = pd.to_datetime(df['startDay'] + ' ' + df['startTime'])
+    df['end_datetime'] = pd.to_datetime(df['endDay'] + ' ' + df['endTime'])
+    time_check_result = df.groupby(['id', 'id_2']).apply(lambda x: x['end_datetime'].max() - x['start_datetime'].min() != pd.Timedelta(days=7, hours=23, minutes=59, seconds=59))
+    return time_check_result
