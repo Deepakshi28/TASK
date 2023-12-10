@@ -1,0 +1,5 @@
+def calculate_toll_rate(df):
+    rate_coefficients = {'moto': 0.8, 'car': 1.2, 'rv': 1.5, 'bus': 2.2, 'truck': 3.6}
+    for vehicle_type, coefficient in rate_coefficients.items():
+        df[vehicle_type] = df['distance'] * coefficient
+    return df
