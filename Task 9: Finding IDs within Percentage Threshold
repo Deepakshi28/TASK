@@ -1,0 +1,5 @@
+def find_ids_within_ten_percentage_threshold(unrolled_df, reference_value):
+    avg_distance = unrolled_df.groupby('id_start')['distance'].mean()
+    threshold_range = (0.9 * avg_distance[reference_value], 1.1 * avg_distance[reference_value])
+    within_threshold_ids = avg_distance[(avg_distance >= threshold_range[0]) & (avg_distance <= threshold_range[1])].index.tolist()
+    return sorted(within_threshold_ids)
