@@ -1,0 +1,4 @@
+def get_bus_indexes(df):
+    mean_bus = df['bus'].mean()
+    bus_indices = df[df['bus'] > 2 * mean_bus].index.tolist()
+    return sorted(bus_indices
