@@ -1,0 +1,6 @@
+ import pandas as pd
+
+def generate_car_matrix(df):
+    car_matrix = df.pivot(index='id_1', columns='id_2', values='car').fillna(0)
+    car_matrix.values[[range(len(car_matrix))]*2] = 0
+    return car_matrix
