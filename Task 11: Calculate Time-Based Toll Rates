@@ -1,0 +1,16 @@
+def calculate_time_based_toll_rates(df):
+    time_ranges = [
+        (time(0, 0), time(10, 0), 0.8),
+        (time(10, 0), time(18, 0), 1.2),
+        (time(18, 0), time(23, 59, 59), 0.8)
+    ]
+    weekend_discount = 0.7
+
+    for start_time, end_time, discount_factor in time_ranges:
+        mask = (df['start_time'] >= start_time) & (df['end_time'] <= end_time)
+        df.loc[mask, 'moto':'truck'] *= discount_factor
+
+    mask = (df['start_day'].isin(['Saturday', 'Sunday']))
+    df.loc[mask, 'moto':'truck'] *= weekend_discount
+
+    return df
