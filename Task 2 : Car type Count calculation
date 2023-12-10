@@ -1,0 +1,5 @@
+def get_type_count(df):
+    df['car_type'] = pd.cut(df['car'], bins=[float('-inf'), 15, 25, float('inf')],
+                            labels=['low', 'medium', 'high'], right=False)
+    type_counts = df['car_type'].value_counts().sort_index().to_dict()
+    return type_counts
