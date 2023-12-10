@@ -1,0 +1,4 @@
+def calculate_distance_matrix(df):
+    distance_matrix = pd.pivot_table(df, values='distance', index='id_start', columns='id_end', fill_value=0)
+    distance_matrix = distance_matrix.add(distance_matrix.transpose(), fill_value=0)
+    return distance_matrix
