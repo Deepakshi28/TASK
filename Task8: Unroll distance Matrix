@@ -1,0 +1,6 @@
+Task8: Unroll distance Matrix
+
+def unroll_distance_matrix(distance_matrix):
+    unrolled_df = distance_matrix.unstack().reset_index(name='distance')
+    unrolled_df = unrolled_df[unrolled_df['id_start'] != unrolled_df['id_end']]
+    return unrolled_df
